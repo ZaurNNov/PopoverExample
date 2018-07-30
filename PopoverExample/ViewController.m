@@ -7,10 +7,12 @@
 //
 
 #import "ViewController.h"
+#import "VCPopView.h"
 
-@interface ViewController ()
+@interface ViewController () <UIPopoverControllerDelegate, UIPopoverPresentationControllerDelegate>
 @property (nonatomic) UIView *customView;
-
+@property (nonatomic) UIBarButtonItem *showBarItem;
+@property (nonatomic) UIBarButtonItem *cancelBarBtn;
 @end
 
 @implementation ViewController
@@ -18,6 +20,11 @@
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
+    
+}
+
+-(void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
     [self loading];
 }
 
@@ -40,22 +47,58 @@
     
     // Items
     UINavigationItem *naviItem = [[UINavigationItem alloc] initWithTitle:@"example Title"];
-    UIBarButtonItem *cancelBarBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonAction:)];
-    naviItem.leftBarButtonItem = cancelBarBtn;
+    self.cancelBarBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelButtonAction:)];
+    naviItem.leftBarButtonItem = self.cancelBarBtn;
     
-    UIBarButtonItem *showBarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showButtonAction:)];
-    naviItem.rightBarButtonItem = showBarItem;
+    self.showBarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(showButtonAction:)];
+    naviItem.rightBarButtonItem = self.showBarItem;
     
     [naviBar setItems:@[naviItem]];
     [self.view addSubview:naviBar];
 }
 
 -(void)cancelButtonAction: (id)sender {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
     // cancel action
+//    [[self presentingViewController] dismissViewControllerAnimated:NO completion:nil];
+    // or
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)showButtonAction: (id)sender {
+    NSLog(@"%@", NSStringFromSelector(_cmd));
     // show action
+    [self createPopover];
+}
+
+/* Create popver controller */
+-(void)createPopover {
+    if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
+        
+        /* old style code = working. but deprecated
+        CGSize contentSize = CGSizeMake(400, 600);
+        VCPopView *popView = [[VCPopView alloc] init];
+        UIPopoverController *popVC = [[UIPopoverController alloc] initWithContentViewController:popView];
+        popVC.popoverContentSize = contentSize;
+        [popVC presentPopoverFromBarButtonItem:self.showBarItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+        */
+
+    //Prepare the controller you want to be displayed
+    VCPopView *popView = [[VCPopView alloc] init];
+    popView.modalPresentationStyle = UIModalPresentationPopover;
+    popView.preferredContentSize = CGSizeMake(400, 600);
+                                                                               
+    //configure UIPopoverPresentationController
+    UIPopoverPresentationController *popover = popView.popoverPresentationController;
+    popover.delegate = self;
+    // cityErrorPopover.sourceView = self.view;
+    popover.barButtonItem = self.showBarItem;
+    popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
+    popover.backgroundColor = [UIColor yellowColor];
+                                                                    
+    // present popup
+    [self presentViewController:popView animated:YES completion:nil];
+    }
 }
 
 @end

@@ -24,5 +24,20 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
+        <!--Pop View-->
+        <scene sceneID="lIe-so-toS">
+            <objects>
+                <viewController storyboardIdentifier="PopView" id="DvZ-SR-Y8I" customClass="VCPopView" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Gea-Xa-Y6A">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="jxv-hS-PkW"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DsR-8o-bIA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="22" y="731"/>
+        </scene>
     </scenes>
 </document>
