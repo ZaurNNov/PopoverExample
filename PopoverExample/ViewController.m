@@ -90,14 +90,17 @@
     */
 
     //Prepare the controller you want to be displayed
+    
     VCPopView *popView = [[VCPopView alloc] init];
+//    VCPopView *popView = [[VCPopView alloc] initWithNibName:@"VCPopView" bundle:nil];
+        
     popView.modalPresentationStyle = UIModalPresentationPopover;
     popView.preferredContentSize = CGSizeMake(400, 600);
                                                                                
     //configure UIPopoverPresentationController
     UIPopoverPresentationController *popover = popView.popoverPresentationController;
     popover.delegate = self;
-    // cityErrorPopover.sourceView = self.view;
+    // popover.sourceView = self.view;
     popover.barButtonItem = self.showBarItem;
     popover.permittedArrowDirections = UIPopoverArrowDirectionAny;
     popover.backgroundColor = [UIColor yellowColor];
@@ -108,7 +111,7 @@
 }
 
 -(void)closeCustomPopver {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self dismissViewControllerAnimated:NO completion:nil];
 }
 
 @end
