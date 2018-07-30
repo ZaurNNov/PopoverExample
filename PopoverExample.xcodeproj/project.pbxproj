@@ -58,15 +58,15 @@
 		CE3FE6D4210F00780046D6C3 /* PopoverExample */ = {
 			isa = PBXGroup;
 			children = (
+				CE3FE6E4210F007B0046D6C3 /* main.m */,
+				CE3FE6E3210F007B0046D6C3 /* Info.plist */,
+				CE3FE6DE210F007B0046D6C3 /* Assets.xcassets */,
+				CE3FE6E0210F007B0046D6C3 /* LaunchScreen.storyboard */,
+				CE3FE6DB210F00780046D6C3 /* Main.storyboard */,
 				CE3FE6D5210F00780046D6C3 /* AppDelegate.h */,
 				CE3FE6D6210F00780046D6C3 /* AppDelegate.m */,
 				CE3FE6D8210F00780046D6C3 /* ViewController.h */,
 				CE3FE6D9210F00780046D6C3 /* ViewController.m */,
-				CE3FE6DB210F00780046D6C3 /* Main.storyboard */,
-				CE3FE6DE210F007B0046D6C3 /* Assets.xcassets */,
-				CE3FE6E0210F007B0046D6C3 /* LaunchScreen.storyboard */,
-				CE3FE6E3210F007B0046D6C3 /* Info.plist */,
-				CE3FE6E4210F007B0046D6C3 /* main.m */,
 			);
 			path = PopoverExample;
 			sourceTree = "<group>";
