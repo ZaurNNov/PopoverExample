@@ -26,6 +26,12 @@
 -(void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
     [self loading];
+    [self closeCustomPopver];
+}
+
+-(void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    [self closeCustomPopver];
 }
 
 -(void)loading {
@@ -62,7 +68,7 @@
     // cancel action
 //    [[self presentingViewController] dismissViewControllerAnimated:NO completion:nil];
     // or
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self closeCustomPopver];
 }
 
 -(void)showButtonAction: (id)sender {
@@ -75,13 +81,13 @@
 -(void)createPopover {
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad) {
         
-        /* old style code = working. but deprecated
-        CGSize contentSize = CGSizeMake(400, 600);
-        VCPopView *popView = [[VCPopView alloc] init];
-        UIPopoverController *popVC = [[UIPopoverController alloc] initWithContentViewController:popView];
-        popVC.popoverContentSize = contentSize;
-        [popVC presentPopoverFromBarButtonItem:self.showBarItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
-        */
+    /* old style code = working. but deprecated
+    CGSize contentSize = CGSizeMake(400, 600);
+    VCPopView *popView = [[VCPopView alloc] init];
+    UIPopoverController *popVC = [[UIPopoverController alloc] initWithContentViewController:popView];
+    popVC.popoverContentSize = contentSize;
+    [popVC presentPopoverFromBarButtonItem:self.showBarItem permittedArrowDirections:UIPopoverArrowDirectionAny animated:YES];
+    */
 
     //Prepare the controller you want to be displayed
     VCPopView *popView = [[VCPopView alloc] init];
@@ -99,6 +105,10 @@
     // present popup
     [self presentViewController:popView animated:YES completion:nil];
     }
+}
+
+-(void)closeCustomPopver {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
